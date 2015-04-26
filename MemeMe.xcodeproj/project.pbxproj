@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		204EDBAB1AED353F0075CF4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204EDBAA1AED353F0075CF4E /* AppDelegate.swift */; };
-		204EDBAD1AED353F0075CF4E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204EDBAC1AED353F0075CF4E /* ViewController.swift */; };
 		204EDBB01AED353F0075CF4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 204EDBAE1AED353F0075CF4E /* Main.storyboard */; };
 		204EDBB21AED353F0075CF4E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 204EDBB11AED353F0075CF4E /* Images.xcassets */; };
 		204EDBB51AED353F0075CF4E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204EDBB31AED353F0075CF4E /* LaunchScreen.xib */; };
@@ -29,7 +28,6 @@
 		204EDBA51AED353F0075CF4E /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		204EDBA91AED353F0075CF4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		204EDBAA1AED353F0075CF4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		204EDBAC1AED353F0075CF4E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		204EDBAF1AED353F0075CF4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		204EDBB11AED353F0075CF4E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		204EDBB41AED353F0075CF4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -77,8 +75,8 @@
 		204EDBA71AED353F0075CF4E /* MemeMe */ = {
 			isa = PBXGroup;
 			children = (
+				204EDBCA1AED376D0075CF4E /* Controllers */,
 				204EDBAA1AED353F0075CF4E /* AppDelegate.swift */,
-				204EDBAC1AED353F0075CF4E /* ViewController.swift */,
 				204EDBAE1AED353F0075CF4E /* Main.storyboard */,
 				204EDBB11AED353F0075CF4E /* Images.xcassets */,
 				204EDBB31AED353F0075CF4E /* LaunchScreen.xib */,
@@ -110,6 +108,13 @@
 				204EDBBF1AED353F0075CF4E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		204EDBCA1AED376D0075CF4E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,7 +217,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				204EDBAD1AED353F0075CF4E /* ViewController.swift in Sources */,
 				204EDBAB1AED353F0075CF4E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
