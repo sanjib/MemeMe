@@ -10,10 +10,20 @@ import UIKit
 
 class MemeEditorViewController: UIViewController {
 
+    var meme: Meme!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if let meme = meme {
+            println(meme.topText)
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
