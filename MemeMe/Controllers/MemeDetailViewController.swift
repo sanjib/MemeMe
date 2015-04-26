@@ -20,7 +20,7 @@ class MemeDetailViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        println(meme)
+        println(meme.topText)
     }
 
     override func didReceiveMemoryWarning() {

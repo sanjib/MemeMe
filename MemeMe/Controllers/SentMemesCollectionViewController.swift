@@ -8,10 +8,12 @@
 
 import UIKit
 
-let reuseIdentifier = "Cell"
+let reuseIdentifier = "MemeItemCell"
 
 class SentMemesCollectionViewController: UICollectionViewController {
-
+    var memes: [Meme]!
+    var meme: Meme!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,9 +21,15 @@ class SentMemesCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.registerClass(SentMemesCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        memes = (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+        self.collectionView?.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,25 +51,34 @@ class SentMemesCollectionViewController: UICollectionViewController {
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         //#warning Incomplete method implementation -- Return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
-        return 0
+        return memes.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! SentMemesCollectionViewCell
     
-        // Configure the cell
+        let meme = memes[indexPath.row]
+        let imageView = UIImageView()
+        imageView.image = meme.memeImage
+        cell.backgroundView = imageView
+        cell.topTextLabel.text = meme.topText
     
         return cell
     }
 
     // MARK: UICollectionViewDelegate
 
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        meme = memes[indexPath.row]
+        performSegueWithIdentifier("MemeDetailSegueFromSentMemesCollection", sender: self)
+    }
+    
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
     override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -90,5 +107,17 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     }
     */
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "MemeDetailSegueFromSentMemesCollection" {
+            let controller = segue.destinationViewController as! MemeDetailViewController
+            controller.meme = meme
+        }
+    }
 
 }
