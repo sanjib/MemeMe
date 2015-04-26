@@ -21,6 +21,19 @@ class MemeDetailViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         println(meme.topText)
+        
+        let editButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: "editMeme")
+        let deleteButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: "deleteMeme")
+        self.navigationItem.rightBarButtonItems = [deleteButton, editButton]
+    }
+    
+    func editMeme() {
+        println("edit meme")
+        performSegueWithIdentifier("MemeEditorSegueFromMemeDetail", sender: self)
+    }
+    
+    func deleteMeme() {
+        println("delete meme")
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,6 +48,7 @@ class MemeDetailViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
         if segue.identifier == "MemeEditorSegueFromMemeDetail" {
             let navController = segue.destinationViewController as! UINavigationController
             let controller = navController.childViewControllers.first as! MemeEditorViewController

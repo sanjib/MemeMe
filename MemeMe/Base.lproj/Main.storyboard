@@ -103,13 +103,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="geh-JT-EVO">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="8rI-kl-dL5">
-                            <connections>
-                                <segue destination="Flx-Ws-QG6" kind="presentation" identifier="MemeEditorSegueFromMemeDetail" id="q6r-kx-Xaa"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="geh-JT-EVO"/>
+                    <connections>
+                        <segue destination="Flx-Ws-QG6" kind="presentation" identifier="MemeEditorSegueFromMemeDetail" id="Yzg-dX-pk8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M7Q-re-tFr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -264,6 +261,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="zyk-3K-KSi"/>
-        <segue reference="q6r-kx-Xaa"/>
+        <segue reference="Yzg-dX-pk8"/>
     </inferredMetricsTieBreakers>
 </document>
