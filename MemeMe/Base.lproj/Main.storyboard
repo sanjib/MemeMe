@@ -2,13 +2,16 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5co-4g-ooe">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Sent Memes Table View Controller-->
         <scene sceneID="aaj-1E-L9t">
             <objects>
-                <tableViewController id="bgX-8u-pfw" sceneMemberID="viewController">
+                <tableViewController id="bgX-8u-pfw" customClass="SentMemesTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5sq-AV-Piw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -27,7 +30,7 @@
                     <navigationItem key="navigationItem" id="Qnc-nr-ZfC">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vMe-d8-Slr">
                             <connections>
-                                <segue destination="lU9-DH-Yh9" kind="presentation" id="1rw-kY-5Nu"/>
+                                <segue destination="Flx-Ws-QG6" kind="presentation" identifier="MemeEditorSegueFromMemeScenesTable" id="5QG-Qz-MHv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -36,11 +39,12 @@
             </objects>
             <point key="canvasLocation" x="2218.5" y="412"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Sent Memes Collection View Controller-->
         <scene sceneID="WHP-8s-PiV">
             <objects>
-                <collectionViewController id="40e-jo-Asd" sceneMemberID="viewController">
+                <collectionViewController id="40e-jo-Asd" customClass="SentMemesCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="JnM-ff-DdI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cq4-AX-oVg">
                             <size key="itemSize" width="50" height="50"/>
@@ -67,7 +71,7 @@
                     <navigationItem key="navigationItem" id="ryE-Kn-CMv">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="NQz-8Y-U3J">
                             <connections>
-                                <segue destination="lU9-DH-Yh9" kind="presentation" id="Pfj-jh-gTK"/>
+                                <segue destination="Flx-Ws-QG6" kind="presentation" identifier="MemeEditorSegueFromMemeScenesCollection" id="E6L-vX-2qn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -85,6 +89,7 @@
                         <viewControllerLayoutGuide type="bottom" id="1uE-17-lFY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="H3I-Jz-2kR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -93,15 +98,16 @@
             </objects>
             <point key="canvasLocation" x="3201" y="1182"/>
         </scene>
-        <!--View Controller-->
+        <!--Meme Editor View Controller-->
         <scene sceneID="ubU-YA-5hb">
             <objects>
-                <viewController id="cQt-Tg-hT7" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemeEditorViewController" id="cQt-Tg-hT7" customClass="MemeEditorViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="U65-aW-vHV"/>
                         <viewControllerLayoutGuide type="bottom" id="xa2-SN-dg8"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="st8-q8-pkj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbx-co-foI">
@@ -121,31 +127,47 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="SE3-0j-VdG"/>
                                 </items>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="556" width="400" height="44"/>
-                                </variation>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zbx-co-foI" firstAttribute="leading" secondItem="st8-q8-pkj" secondAttribute="leadingMargin" constant="-16" id="0XF-DC-brq"/>
+                            <constraint firstItem="xa2-SN-dg8" firstAttribute="top" secondItem="zbx-co-foI" secondAttribute="bottom" id="dcp-zj-VwO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zbx-co-foI" secondAttribute="trailing" constant="-16" id="te0-Xp-lW1"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="zbx-co-foI"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="dcp-zj-VwO"/>
+                                <exclude reference="0XF-DC-brq"/>
+                                <exclude reference="te0-Xp-lW1"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="zbx-co-foI"/>
                             </mask>
+                            <mask key="constraints">
+                                <include reference="dcp-zj-VwO"/>
+                                <include reference="0XF-DC-brq"/>
+                                <include reference="te0-Xp-lW1"/>
+                            </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="80H-54-SWe">
                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="d4K-ST-SbR"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="MfM-p8-6jy"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="MfM-p8-6jy">
+                            <connections>
+                                <action selector="cancelMemeEdit:" destination="cQt-Tg-hT7" id="ldS-EC-7Wd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y6J-t9-bdU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3922.5" y="412"/>
+            <point key="canvasLocation" x="3960" y="412"/>
         </scene>
         <!--Table-->
         <scene sceneID="mCx-tB-8HE">
@@ -164,7 +186,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z2m-EG-HTb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1300.5" y="412"/>
+            <point key="canvasLocation" x="1387.5" y="412"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="jdq-Sr-s1B">
@@ -183,7 +205,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="935-cH-41r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="391.5" y="806"/>
+            <point key="canvasLocation" x="511.5" y="796"/>
         </scene>
         <!--Grid-->
         <scene sceneID="Tn7-h4-dKh">
@@ -202,28 +224,28 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2n2-cc-ilo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1300.5" y="1182"/>
+            <point key="canvasLocation" x="1387.5" y="1182"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="PGD-HJ-2If">
+        <scene sceneID="4Fg-WQ-QH0">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lU9-DH-Yh9" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MemeEditorNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Flx-Ws-QG6" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MbH-6m-1cg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sxa-hA-eFU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="cQt-Tg-hT7" kind="relationship" relationship="rootViewController" id="6ub-6j-vik"/>
+                        <segue destination="cQt-Tg-hT7" kind="relationship" relationship="rootViewController" id="KXo-de-Csr"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GMb-wU-VNY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JOX-rr-Nxf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3201" y="412"/>
+            <point key="canvasLocation" x="3210" y="412"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Pfj-jh-gTK"/>
+        <segue reference="E6L-vX-2qn"/>
     </inferredMetricsTieBreakers>
 </document>
