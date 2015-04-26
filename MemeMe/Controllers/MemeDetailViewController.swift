@@ -34,6 +34,17 @@ class MemeDetailViewController: UIViewController {
     
     func deleteMeme() {
         println("delete meme")
+        let controller = UIAlertController()
+        controller.title = "Delete Meme"
+        controller.message = "Are you sure you want to delete this meme?"
+        controller.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Destructive) {
+            action in
+            println("DELETED meme")
+            })
+        controller.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) {
+            action in self.dismissViewControllerAnimated(true, completion: nil)
+            })
+        self.presentViewController(controller, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
