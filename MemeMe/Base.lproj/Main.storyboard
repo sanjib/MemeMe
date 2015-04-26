@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Sent Memes Table View Controller-->
+        <!--Sent Memes-->
         <scene sceneID="aaj-1E-L9t">
             <objects>
                 <tableViewController id="bgX-8u-pfw" customClass="SentMemesTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -27,19 +27,22 @@
                             <outlet property="delegate" destination="bgX-8u-pfw" id="J8p-L5-ThI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Qnc-nr-ZfC">
+                    <navigationItem key="navigationItem" title="Sent Memes" id="Qnc-nr-ZfC">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vMe-d8-Slr">
                             <connections>
                                 <segue destination="Flx-Ws-QG6" kind="presentation" identifier="MemeEditorSegueFromMemeScenesTable" id="5QG-Qz-MHv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Fj4-ac-K4a" kind="show" identifier="MemeDetailSegueFromSentMemesTable" id="zyk-3K-KSi"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5n6-78-Kkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2218.5" y="412"/>
         </scene>
-        <!--Sent Memes Collection View Controller-->
+        <!--Sent Memes-->
         <scene sceneID="WHP-8s-PiV">
             <objects>
                 <collectionViewController id="40e-jo-Asd" customClass="SentMemesCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -68,22 +71,25 @@
                             <outlet property="delegate" destination="40e-jo-Asd" id="9h8-dU-7Cw"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="ryE-Kn-CMv">
+                    <navigationItem key="navigationItem" title="Sent Memes" id="ryE-Kn-CMv">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="NQz-8Y-U3J">
                             <connections>
                                 <segue destination="Flx-Ws-QG6" kind="presentation" identifier="MemeEditorSegueFromMemeScenesCollection" id="E6L-vX-2qn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Fj4-ac-K4a" kind="show" identifier="MemeDetailSegueFromSentMemesCollection" id="Bkn-Jf-YFl"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WER-B9-RHZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2218.5" y="1182"/>
         </scene>
-        <!--View Controller-->
+        <!--Meme Detail View Controller-->
         <scene sceneID="lP4-5p-nB3">
             <objects>
-                <viewController storyboardIdentifier="MemeDetailViewController" id="Fj4-ac-K4a" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemeDetailViewController" id="Fj4-ac-K4a" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QCb-mw-uYK"/>
                         <viewControllerLayoutGuide type="bottom" id="1uE-17-lFY"/>
@@ -96,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M7Q-re-tFr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3201" y="1182"/>
+            <point key="canvasLocation" x="3210" y="1182"/>
         </scene>
         <!--Meme Editor View Controller-->
         <scene sceneID="ubU-YA-5hb">
@@ -246,6 +252,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="E6L-vX-2qn"/>
+        <segue reference="zyk-3K-KSi"/>
+        <segue reference="5QG-Qz-MHv"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -11,6 +11,7 @@ import UIKit
 class SentMemesTableViewController: UITableViewController {
 
     var memes: [Meme]!
+    var meme: Meme!
     var memeEditorShown = false
         
     override func viewDidLoad() {
@@ -65,6 +66,11 @@ class SentMemesTableViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        meme = memes[indexPath.row]
+        performSegueWithIdentifier("MemeDetailSegueFromSentMemesTable", sender: self)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -100,14 +106,16 @@ class SentMemesTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        if segue.identifier == "MemeDetailSegueFromSentMemesTable" {
+            let controller = segue.destinationViewController as! MemeDetailViewController
+            controller.meme = meme
+        }
     }
-    */
 
 }
