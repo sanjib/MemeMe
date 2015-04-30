@@ -25,12 +25,7 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView!.registerClass(SentMemesCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.collectionView?.reloadData()
+        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         // Create the toolbar
         toolbar = UIToolbar(frame: CGRect(
@@ -44,6 +39,11 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
         // Create the trash icon (UIBarButtonItem)
         toolbarItemDelete = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: nil, action: "deleteSelectedModels")
         toolbar.items = [toolbarItemDelete]
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.collectionView?.reloadData()
 
         // Turn edit mode off
         turnEditModeOff()
@@ -54,7 +54,6 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     @IBAction func editCollection(sender: UIBarButtonItem) {
         if inEditingMode {
             turnEditModeOff()
-            inEditingMode = false
         } else {
             toolbar.hidden = false
             editButton.title = "Done"
@@ -80,6 +79,7 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
             editButton.enabled = false
         }
         toolbarItemDelete.enabled = toolbarItemDeleteState()
+        inEditingMode = false
     }
 
     private func toolbarItemDeleteState() -> Bool {
@@ -144,7 +144,7 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! SentMemesCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! UICollectionViewCell
     
         let meme = appDelegate.memes[indexPath.row]
         let imageView = UIImageView()
@@ -152,6 +152,15 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
         imageView.clipsToBounds = true
         imageView.image = meme.memeImage
         cell.backgroundView = imageView
+        
+        let backgroundView = UIView(frame: cell.contentView.frame)
+        backgroundView.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.7)
+
+        let checkmarkImageView = UIImageView(frame: cell.contentView.frame)
+        checkmarkImageView.contentMode = UIViewContentMode.BottomRight
+        checkmarkImageView.image = UIImage(named: "checkmark")
+        backgroundView.addSubview(checkmarkImageView)
+        cell.selectedBackgroundView = backgroundView
     
         return cell
     }
@@ -173,19 +182,20 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
         }
     }
     
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
 
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if !inEditingMode {
+            collectionView.cellForItemAtIndexPath(indexPath)?.selectedBackgroundView = nil
+        }
         return true
     }
-    */
+
+    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if !inEditingMode {
+            collectionView.cellForItemAtIndexPath(indexPath)?.selectedBackgroundView = nil
+        }
+        return true
+    }
     
     // MARK: - Navigation
     
