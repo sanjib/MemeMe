@@ -42,6 +42,13 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
         bottomTextField.delegate = self
         imagePickerController.delegate = self
         
+        // For editing, set the meme properties
+        if let meme = self.meme {
+            topTextField.text = meme.topText
+            bottomTextField.text = meme.bottomText
+            memeImageView.image = meme.originalImage
+        }
+        
         // Tags set to text field to check which field user is currently editing.
         topTextField.tag = 1
         bottomTextField.tag = 2
@@ -49,13 +56,6 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // For editing, set the meme properties
-        if let meme = self.meme {
-            topTextField.text = meme.topText
-            bottomTextField.text = meme.bottomText
-            memeImageView.image = meme.originalImage
-        }
 
         // Meme text attributes and alignment
         topTextField.defaultTextAttributes = memeTextAtrributes
