@@ -18,6 +18,7 @@
 		204EDBD31AED387F0075CF4E /* MemeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204EDBD21AED387F0075CF4E /* MemeEditorViewController.swift */; };
 		204EDBD51AED389C0075CF4E /* MemeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204EDBD41AED389C0075CF4E /* MemeDetailViewController.swift */; };
 		204EDBD81AED6D8A0075CF4E /* SentMemesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204EDBD71AED6D8A0075CF4E /* SentMemesCollectionViewCell.swift */; };
+		20B54A3D1AF1B72300D604E1 /* Copal Std Solid.otf in Resources */ = {isa = PBXBuildFile; fileRef = 20B54A3C1AF1B71500D604E1 /* Copal Std Solid.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		204EDBD21AED387F0075CF4E /* MemeEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemeEditorViewController.swift; path = Controllers/MemeEditorViewController.swift; sourceTree = "<group>"; };
 		204EDBD41AED389C0075CF4E /* MemeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemeDetailViewController.swift; path = Controllers/MemeDetailViewController.swift; sourceTree = "<group>"; };
 		204EDBD71AED6D8A0075CF4E /* SentMemesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SentMemesCollectionViewCell.swift; path = Views/SentMemesCollectionViewCell.swift; sourceTree = "<group>"; };
+		20B54A3C1AF1B71500D604E1 /* Copal Std Solid.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Copal Std Solid.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 		204EDBA81AED353F0075CF4E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				20B54A3C1AF1B71500D604E1 /* Copal Std Solid.otf */,
 				204EDBA91AED353F0075CF4E /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -231,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20B54A3D1AF1B72300D604E1 /* Copal Std Solid.otf in Resources */,
 				204EDBB01AED353F0075CF4E /* Main.storyboard in Resources */,
 				204EDBB51AED353F0075CF4E /* LaunchScreen.xib in Resources */,
 				204EDBB21AED353F0075CF4E /* Images.xcassets in Resources */,
