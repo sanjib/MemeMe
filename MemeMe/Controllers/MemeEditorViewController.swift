@@ -16,6 +16,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var actionButton: UIBarButtonItem!
     
+    let imagePickerController = UIImagePickerController()
     var meme: Meme!
     
     private let defaultTextForTopTextField = "TOP"
@@ -30,6 +31,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
         super.viewDidLoad()
         topTextField.delegate = self
         bottomTextField.delegate = self
+        imagePickerController.delegate = self
         
         // Tags set to text field to check which field user is currently editing.
         topTextField.tag = 1
@@ -41,6 +43,19 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
         if let meme = meme {
             println(meme.topText)
         }
+
+        
+        
+        // Enable camera button if available
+        cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        
+        // Enable action button (for sharing meme) only when image has been set
+        if memeImageView.image != nil {
+            actionButton.enabled = true
+        } else {
+            actionButton.enabled = false
+        }
+        
         subscribeToKeyboardNotifications()
     }
     
@@ -48,9 +63,29 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
         super.viewWillDisappear(animated)
         unsubscribeToKeyboardNotifications()
     }
-
     
     @IBAction func cancelMemeEdit(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: - Image Picker
+    
+    @IBAction func getImage(sender: UIBarButtonItem) {
+        // Tags assigned to bar button items to distinguish which button called this method
+        // tag 1: camera button
+        // tag 2: organize button
+        if (sender.tag == 1) && cameraButton.enabled {
+            imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
+        } else if sender.tag == 2 {
+            imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        }
+        self.presentViewController(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            memeImageView.image = image
+        }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 

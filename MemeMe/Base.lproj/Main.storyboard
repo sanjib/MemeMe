@@ -124,27 +124,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aGs-Qi-yGr">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbx-co-foI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="qMc-hb-tPN"/>
-                                    <barButtonItem style="plain" systemItem="camera" id="93j-QH-vlu"/>
+                                    <barButtonItem tag="1" style="plain" systemItem="camera" id="93j-QH-vlu">
+                                        <connections>
+                                            <action selector="getImage:" destination="cQt-Tg-hT7" id="C22-7O-Sur"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="tRk-LX-Q11"/>
-                                    <barButtonItem style="plain" id="XYj-le-kNV">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="k5A-3t-lT9">
-                                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Album">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
+                                    <barButtonItem title="Album" id="bBf-26-4IR">
+                                        <connections>
+                                            <action selector="getImage:" destination="cQt-Tg-hT7" id="RhQ-OA-dTb"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="SE3-0j-VdG"/>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aGs-Qi-yGr">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NDt-eL-Wmo">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -156,65 +156,65 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="zbx-co-foI" firstAttribute="leading" secondItem="st8-q8-pkj" secondAttribute="leadingMargin" constant="-16" id="0XF-DC-brq"/>
                             <constraint firstItem="F1a-hl-zMa" firstAttribute="leading" secondItem="st8-q8-pkj" secondAttribute="leadingMargin" id="2ga-s9-3bp"/>
+                            <constraint firstItem="aGs-Qi-yGr" firstAttribute="leading" secondItem="st8-q8-pkj" secondAttribute="leadingMargin" constant="-16" id="2vn-If-FaM"/>
                             <constraint firstItem="NDt-eL-Wmo" firstAttribute="leading" secondItem="st8-q8-pkj" secondAttribute="leadingMargin" id="8D0-KN-ypM"/>
                             <constraint firstItem="NDt-eL-Wmo" firstAttribute="trailing" secondItem="st8-q8-pkj" secondAttribute="trailingMargin" id="8UN-r4-VlW"/>
-                            <constraint firstItem="aGs-Qi-yGr" firstAttribute="leading" secondItem="st8-q8-pkj" secondAttribute="leadingMargin" constant="-16" id="BD2-Id-yAA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aGs-Qi-yGr" secondAttribute="trailing" constant="-16" id="CG0-5n-vf4"/>
+                            <constraint firstItem="xa2-SN-dg8" firstAttribute="top" secondItem="aGs-Qi-yGr" secondAttribute="bottom" id="JdL-xg-uKZ"/>
+                            <constraint firstItem="aGs-Qi-yGr" firstAttribute="top" secondItem="st8-q8-pkj" secondAttribute="topMargin" id="KM5-ac-0pN"/>
                             <constraint firstItem="F1a-hl-zMa" firstAttribute="trailing" secondItem="st8-q8-pkj" secondAttribute="trailingMargin" id="S1v-1j-D9v"/>
                             <constraint firstItem="xa2-SN-dg8" firstAttribute="top" secondItem="zbx-co-foI" secondAttribute="bottom" id="dcp-zj-VwO"/>
-                            <constraint firstItem="aGs-Qi-yGr" firstAttribute="top" secondItem="U65-aW-vHV" secondAttribute="bottom" id="eRR-HS-ISq"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="aGs-Qi-yGr" secondAttribute="trailing" constant="-16" id="g2M-Lb-dkG"/>
-                            <constraint firstItem="zbx-co-foI" firstAttribute="top" secondItem="aGs-Qi-yGr" secondAttribute="bottom" id="gfc-sT-lF6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zbx-co-foI" secondAttribute="trailing" constant="-16" id="te0-Xp-lW1"/>
                             <constraint firstItem="NDt-eL-Wmo" firstAttribute="top" secondItem="U65-aW-vHV" secondAttribute="bottom" constant="40" id="tgB-EW-btP"/>
                             <constraint firstItem="zbx-co-foI" firstAttribute="top" secondItem="F1a-hl-zMa" secondAttribute="bottom" constant="40" id="uWl-IQ-Qef"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="zbx-co-foI"/>
                                 <exclude reference="aGs-Qi-yGr"/>
+                                <exclude reference="zbx-co-foI"/>
                                 <exclude reference="NDt-eL-Wmo"/>
                                 <exclude reference="F1a-hl-zMa"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="BD2-Id-yAA"/>
-                                <exclude reference="eRR-HS-ISq"/>
-                                <exclude reference="g2M-Lb-dkG"/>
+                                <exclude reference="2vn-If-FaM"/>
+                                <exclude reference="CG0-5n-vf4"/>
+                                <exclude reference="KM5-ac-0pN"/>
                                 <exclude reference="8D0-KN-ypM"/>
                                 <exclude reference="8UN-r4-VlW"/>
                                 <exclude reference="tgB-EW-btP"/>
                                 <exclude reference="2ga-s9-3bp"/>
                                 <exclude reference="S1v-1j-D9v"/>
                                 <exclude reference="0XF-DC-brq"/>
-                                <exclude reference="gfc-sT-lF6"/>
                                 <exclude reference="te0-Xp-lW1"/>
                                 <exclude reference="uWl-IQ-Qef"/>
+                                <exclude reference="JdL-xg-uKZ"/>
                                 <exclude reference="dcp-zj-VwO"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="zbx-co-foI"/>
                                 <include reference="aGs-Qi-yGr"/>
+                                <include reference="zbx-co-foI"/>
                                 <include reference="NDt-eL-Wmo"/>
                                 <include reference="F1a-hl-zMa"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="BD2-Id-yAA"/>
-                                <include reference="eRR-HS-ISq"/>
-                                <include reference="g2M-Lb-dkG"/>
+                                <include reference="2vn-If-FaM"/>
+                                <include reference="CG0-5n-vf4"/>
+                                <include reference="KM5-ac-0pN"/>
                                 <include reference="8D0-KN-ypM"/>
                                 <include reference="8UN-r4-VlW"/>
                                 <include reference="tgB-EW-btP"/>
                                 <include reference="2ga-s9-3bp"/>
                                 <include reference="S1v-1j-D9v"/>
                                 <include reference="0XF-DC-brq"/>
-                                <include reference="gfc-sT-lF6"/>
                                 <include reference="te0-Xp-lW1"/>
                                 <include reference="uWl-IQ-Qef"/>
+                                <include reference="JdL-xg-uKZ"/>
                                 <include reference="dcp-zj-VwO"/>
                             </mask>
                         </variation>
