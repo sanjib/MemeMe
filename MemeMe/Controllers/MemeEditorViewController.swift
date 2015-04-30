@@ -18,6 +18,14 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     let imagePickerController = UIImagePickerController()
     var meme: Meme!
+
+    // Attributes and custom font for meme text
+    private let memeTextAtrributes = [
+        NSFontAttributeName:            UIFont(name: "CopalStd-Solid", size: 40)!,
+        NSForegroundColorAttributeName: UIColor.whiteColor(),
+        NSStrokeWidthAttributeName :    -8.0,   // set negative value to avoid clear text
+        NSStrokeColorAttributeName:     UIColor.blackColor(),
+    ]
     
     private let defaultTextForTopTextField = "TOP"
     private let defaultTextForBottomTextField = "BOTTOM"
@@ -44,7 +52,11 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
             println(meme.topText)
         }
 
-        
+        // Meme text attributes and alignment
+        topTextField.defaultTextAttributes = memeTextAtrributes
+        bottomTextField.defaultTextAttributes = memeTextAtrributes
+        topTextField.textAlignment = NSTextAlignment.Center
+        bottomTextField.textAlignment = NSTextAlignment.Center        
         
         // Enable camera button if available
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
