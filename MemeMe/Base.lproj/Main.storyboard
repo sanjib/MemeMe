@@ -161,7 +161,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Sent Memes" id="ryE-Kn-CMv">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="UBe-UU-gbL"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="UBe-UU-gbL">
+                            <connections>
+                                <action selector="editCollection:" destination="40e-jo-Asd" id="HsN-96-3jv"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="NQz-8Y-U3J">
                             <connections>
                                 <segue destination="Flx-Ws-QG6" kind="presentation" identifier="MemeEditorSegueFromMemeScenesCollection" id="E6L-vX-2qn"/>
@@ -169,6 +173,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="editButton" destination="UBe-UU-gbL" id="ebR-Uz-zhR"/>
                         <segue destination="Fj4-ac-K4a" kind="show" identifier="MemeDetailSegueFromSentMemesCollection" id="Bkn-Jf-YFl"/>
                     </connections>
                 </collectionViewController>

@@ -11,8 +11,13 @@ import UIKit
 let reuseIdentifier = "MemeItemCell"
 
 class SentMemesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    @IBOutlet weak var editButton: UIBarButtonItem!
+    var toolbar: UIToolbar!
+    var toolbarItemDelete: UIBarButtonItem!
+    
     private var meme: Meme!
     private let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+    private var inEditingMode = false
     
     // Layout properties
     let minimumSpacingBetweenCells = 5
@@ -26,6 +31,86 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.collectionView?.reloadData()
+        
+        // Create the toolbar
+        toolbar = UIToolbar(frame: CGRect(
+            x: 0,
+            y: (self.view.bounds.size.height - 44),
+            width: self.view.bounds.size.width,
+            height: 44))
+        toolbar.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin
+        self.view.addSubview(toolbar)
+        
+        // Create the trash icon (UIBarButtonItem)
+        toolbarItemDelete = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: nil, action: "deleteSelectedModels")
+        toolbar.items = [toolbarItemDelete]
+
+        // Turn edit mode off
+        turnEditModeOff()
+    }
+    
+    // MARK: - Edit collection and toolbar
+
+    @IBAction func editCollection(sender: UIBarButtonItem) {
+        if inEditingMode {
+            turnEditModeOff()
+            inEditingMode = false
+        } else {
+            toolbar.hidden = false
+            editButton.title = "Done"
+            self.collectionView?.allowsMultipleSelection = true
+            self.tabBarController?.tabBar.hidden = true
+            inEditingMode = true
+        }
+    }
+    
+    private func turnEditModeOff() {
+        if let itemPaths = self.collectionView?.indexPathsForSelectedItems() as? [NSIndexPath] {
+            for indexPath in itemPaths {
+                self.collectionView?.deselectItemAtIndexPath(indexPath, animated: false)
+            }
+        }
+        
+        self.collectionView?.allowsMultipleSelection = false
+        self.tabBarController?.tabBar.hidden = false
+        
+        toolbar.hidden = true
+        editButton.title = "Edit"
+        if (appDelegate.memes.count == 0) {
+            editButton.enabled = false
+        }
+        toolbarItemDelete.enabled = toolbarItemDeleteState()
+    }
+
+    private func toolbarItemDeleteState() -> Bool {
+        if let itemPaths = self.collectionView?.indexPathsForSelectedItems() {
+            if itemPaths.count > 0 {
+                return true
+            }
+        }
+        return false
+    }
+    
+    // MARK: Meme Delete
+    
+    func deleteSelectedModels() {
+        self.collectionView?.performBatchUpdates({
+            if let itemPaths = self.collectionView?.indexPathsForSelectedItems() {
+                var indicesToDelete = [Int]()
+                for indexPath in itemPaths {
+                    indicesToDelete.append(indexPath.row)
+                }
+                // Sorted indices by descending order because everytime an element E is removed,
+                // the indices of the elements beyond E is reduced by one
+                indicesToDelete.sort(>)
+                for index in indicesToDelete {
+                    self.appDelegate.memes.removeAtIndex(index)
+                }
+                self.collectionView?.deleteItemsAtIndexPaths(itemPaths)
+            }
+            }, completion: nil)
+        inEditingMode = false
+        turnEditModeOff()
     }
 
     // MARK: - UICollectionViewDelegateFlowLayout
@@ -74,8 +159,18 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     // MARK: - UICollectionViewDelegate
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        meme = appDelegate.memes[indexPath.row]
-        performSegueWithIdentifier("MemeDetailSegueFromSentMemesCollection", sender: self)
+        if !inEditingMode {
+            meme = appDelegate.memes[indexPath.row]
+            performSegueWithIdentifier("MemeDetailSegueFromSentMemesCollection", sender: self)
+        } else {
+            toolbarItemDelete.enabled = toolbarItemDeleteState()
+        }
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        if inEditingMode {
+            toolbarItemDelete.enabled = toolbarItemDeleteState()
+        }
     }
     
     /*
@@ -89,21 +184,6 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     // Uncomment this method to specify if the specified item should be selected
     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
     }
     */
     
