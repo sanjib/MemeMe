@@ -118,6 +118,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="editButton" destination="BaA-vb-Lqo" id="qC4-LU-zwg"/>
                         <segue destination="Fj4-ac-K4a" kind="show" identifier="MemeDetailSegueFromSentMemesTable" id="zyk-3K-KSi"/>
                     </connections>
                 </tableViewController>
@@ -183,10 +184,44 @@
                     <view key="view" contentMode="scaleToFill" id="H3I-Jz-2kR">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hY1-HV-vD6">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hY1-HV-vD6" firstAttribute="leading" secondItem="H3I-Jz-2kR" secondAttribute="leadingMargin" constant="-16" id="51r-4c-psH"/>
+                            <constraint firstItem="hY1-HV-vD6" firstAttribute="top" secondItem="QCb-mw-uYK" secondAttribute="bottom" id="HDe-qd-chB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hY1-HV-vD6" secondAttribute="trailing" constant="-16" id="MjP-YM-FI4"/>
+                            <constraint firstItem="hY1-HV-vD6" firstAttribute="bottom" secondItem="H3I-Jz-2kR" secondAttribute="bottomMargin" id="wEW-YU-o9O"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="hY1-HV-vD6"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="51r-4c-psH"/>
+                                <exclude reference="HDe-qd-chB"/>
+                                <exclude reference="MjP-YM-FI4"/>
+                                <exclude reference="wEW-YU-o9O"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="hY1-HV-vD6"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="51r-4c-psH"/>
+                                <include reference="HDe-qd-chB"/>
+                                <include reference="MjP-YM-FI4"/>
+                                <include reference="wEW-YU-o9O"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="geh-JT-EVO"/>
                     <connections>
+                        <outlet property="memeImageView" destination="hY1-HV-vD6" id="iT9-j7-NIA"/>
                         <segue destination="Flx-Ws-QG6" kind="presentation" identifier="MemeEditorSegueFromMemeDetail" id="Yzg-dX-pk8"/>
                     </connections>
                 </viewController>
@@ -404,6 +439,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="zyk-3K-KSi"/>
-        <segue reference="5QG-Qz-MHv"/>
+        <segue reference="Yzg-dX-pk8"/>
     </inferredMetricsTieBreakers>
 </document>

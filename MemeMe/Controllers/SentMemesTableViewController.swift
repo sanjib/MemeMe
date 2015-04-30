@@ -9,9 +9,10 @@
 import UIKit
 
 class SentMemesTableViewController: UITableViewController {
-
-    private let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+    @IBOutlet weak var editButton: UIBarButtonItem!
+    
     private var meme: Meme!
+    private let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
     private var memeEditorShown = false
         
     override func viewDidLoad() {

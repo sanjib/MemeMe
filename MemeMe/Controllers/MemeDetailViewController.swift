@@ -9,22 +9,23 @@
 import UIKit
 
 class MemeDetailViewController: UIViewController {
+    @IBOutlet weak var memeImageView: UIImageView!
 
     var meme: Meme!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        println(meme.topText)
-        
+        self.tabBarController?.tabBar.hidden = true
         let editButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: "editMeme")
         let deleteButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: "deleteMeme")
         self.navigationItem.rightBarButtonItems = [deleteButton, editButton]
+        
+        memeImageView.image = meme.memeImage
     }
     
     func editMeme() {

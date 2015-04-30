@@ -17,9 +17,8 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
     @IBOutlet weak var actionButton: UIBarButtonItem!
 
     var meme: Meme!
-    
-    private let imagePickerController = UIImagePickerController()
-    private let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+    private let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)    
+    private let imagePickerController = UIImagePickerController()    
 
     // Attributes and custom font for meme text
     private let memeTextAtrributes = [
