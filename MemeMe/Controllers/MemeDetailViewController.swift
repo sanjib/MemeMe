@@ -12,19 +12,22 @@ class MemeDetailViewController: UIViewController {
     @IBOutlet weak var memeImageView: UIImageView!
 
     var meme: Meme!
+    private let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let editButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: "editMeme")
+        let deleteButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: "deleteMeme")
+        self.navigationItem.rightBarButtonItems = [deleteButton, editButton]
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        let editButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: "editMeme")
-        let deleteButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: "deleteMeme")
-        self.navigationItem.rightBarButtonItems = [deleteButton, editButton]
-        
-        memeImageView.image = meme.memeImage
+        if meme == nil {
+            self.navigationController?.popViewControllerAnimated(true)
+        } else {
+            memeImageView.image = meme.memeImage
+        }
     }
     
     func editMeme() {
@@ -37,29 +40,20 @@ class MemeDetailViewController: UIViewController {
         controller.message = "Are you sure you want to delete this meme?"
         controller.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Destructive) {
             action in
-            println("delete meme")
+            let index = (self.appDelegate.memes as NSArray).indexOfObject(self.meme)
+            self.appDelegate.memes.removeAtIndex(index)
+            self.navigationController?.popViewControllerAnimated(true)
             })
         controller.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) {
             action in
-            println("cancel delete")
             self.dismissViewControllerAnimated(true, completion: nil)
             })
         self.presentViewController(controller, animated: true, completion: nil)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
         if segue.identifier == "MemeEditorSegueFromMemeDetail" {
             let navController = segue.destinationViewController as! UINavigationController
             let controller = navController.childViewControllers.first as! MemeEditorViewController
