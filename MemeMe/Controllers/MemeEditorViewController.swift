@@ -50,8 +50,12 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if let meme = meme {
-            println(meme.topText)
+        
+        // For editing, set the meme properties
+        if let meme = self.meme {
+            topTextField.text = meme.topText
+            bottomTextField.text = meme.bottomText
+            memeImageView.image = meme.originalImage
         }
 
         // Meme text attributes and alignment
@@ -78,8 +82,6 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
         unsubscribeToKeyboardNotifications()
     }
     
-
-    
     // MARK: - Meme Actions
     
     @IBAction func actionForMeme(sender: UIBarButtonItem) {
@@ -100,11 +102,19 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
     // MARK: - Meme Image
     
     func saveMeme() {
-        appDelegate.memes.append(Meme(
-            topText: topTextField.text,
-            bottomText: bottomTextField.text,
-            originalImage: memeImageView.image!,
-            memeImage: generateMemeImage()))
+        if meme != nil {
+            meme.topText = topTextField.text
+            meme.bottomText = bottomTextField.text
+            meme.originalImage = memeImageView.image!
+            meme.memeImage = generateMemeImage()
+        } else {
+            meme = Meme(
+                topText: topTextField.text,
+                bottomText: bottomTextField.text,
+                originalImage: memeImageView.image!,
+                memeImage: generateMemeImage())
+            appDelegate.memes.append(meme)
+        }
     }
     
     func generateMemeImage() -> UIImage {
