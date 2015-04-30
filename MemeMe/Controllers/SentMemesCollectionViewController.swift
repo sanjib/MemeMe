@@ -52,6 +52,7 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     // MARK: - Edit collection and toolbar
 
     @IBAction func editCollection(sender: UIBarButtonItem) {
+        // Toggle edit mode
         if inEditingMode {
             turnEditModeOff()
         } else {
@@ -64,27 +65,33 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     }
     
     private func turnEditModeOff() {
+        // Deselect all items when edit mode is turned off
         if let itemPaths = self.collectionView?.indexPathsForSelectedItems() as? [NSIndexPath] {
             for indexPath in itemPaths {
                 self.collectionView?.deselectItemAtIndexPath(indexPath, animated: false)
             }
         }
         
+        // Disable multiple selection, show tab bar, hide edit toolbar
         self.collectionView?.allowsMultipleSelection = false
         self.tabBarController?.tabBar.hidden = false
-        
         toolbar.hidden = true
+        
+        // Set edit button properties
         editButton.title = "Edit"
         if (appDelegate.memes.count == 0) {
             editButton.enabled = false
         } else {
             editButton.enabled = true
         }
+        
+        // Disable trash icon and set edit mode to false
         toolbarItemDelete.enabled = toolbarItemDeleteState()
         inEditingMode = false
     }
 
     private func toolbarItemDeleteState() -> Bool {
+        // Enable or disable trash icon in toolbar based on items selected
         if let itemPaths = self.collectionView?.indexPathsForSelectedItems() {
             if itemPaths.count > 0 {
                 return true
@@ -118,9 +125,7 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        // To determine width of a cell we divide frame width by cells per row
-        // Then compensate it by subtracting minimum spacing between cells
-        // The last cell doesn't need compensation for spacing
+        // Use width in portrait mode; height in landscape
         let deviceOrientation = UIDevice.currentDevice().orientation
         var widthForCollection: CGFloat!
         if (deviceOrientation == UIDeviceOrientation.Portrait) || (deviceOrientation == UIDeviceOrientation.PortraitUpsideDown) {
@@ -129,6 +134,9 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
             widthForCollection = self.view.frame.height
         }
         
+        // To determine width of a cell we divide frame width by cells per row
+        // Then compensate it by subtracting minimum spacing between cells
+        // The last cell doesn't need compensation for spacing
         let width = Float(widthForCollection / CGFloat(cellsPerRowInPortraitMode)) -
             Float(minimumSpacingBetweenCells - (minimumSpacingBetweenCells / cellsPerRowInPortraitMode))
         let height = width
@@ -163,6 +171,7 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
         imageView.image = meme.memeImage
         cell.backgroundView = imageView
         
+        // Selected state properties
         let backgroundView = UIView(frame: cell.contentView.frame)
         backgroundView.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.7)
 
@@ -190,8 +199,7 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
         if inEditingMode {
             toolbarItemDelete.enabled = toolbarItemDeleteState()
         }
-    }
-    
+    }    
 
     override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
         if !inEditingMode {

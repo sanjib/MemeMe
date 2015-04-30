@@ -16,6 +16,8 @@ class MemeDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Add the button items programatically since we want to show more than 1 button (edit and delete)
         let editButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: "editMeme")
         let deleteButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: "deleteMeme")
         self.navigationItem.rightBarButtonItems = [deleteButton, editButton]
@@ -23,6 +25,8 @@ class MemeDetailViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // In case there is no meme initiated, pop the current view
         if meme == nil {
             self.navigationController?.popViewControllerAnimated(true)
         } else {
@@ -40,6 +44,7 @@ class MemeDetailViewController: UIViewController {
         controller.message = "Are you sure you want to delete this meme?"
         controller.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Destructive) {
             action in
+            // Convert memes to NSArray to get the index of the meme, then delete it using removeAtIndex
             let index = (self.appDelegate.memes as NSArray).indexOfObject(self.meme)
             self.appDelegate.memes.removeAtIndex(index)
             self.navigationController?.popViewControllerAnimated(true)

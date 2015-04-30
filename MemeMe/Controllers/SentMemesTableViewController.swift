@@ -19,6 +19,8 @@ class SentMemesTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.reloadData()
+        
+        // Disable the Edit button if there are no memes
         if (appDelegate.memes.count == 0) {
             editButton.enabled = false
         } else {
@@ -28,6 +30,8 @@ class SentMemesTableViewController: UITableViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        // Show the Meme Editor when there are no memes and the Meme Editor was never shown
         if (appDelegate.memes.count == 0) && (memeEditorShown == false) {
             performSegueWithIdentifier("MemeEditorSegueFromMemeScenesTable", sender: self)
             memeEditorShown = true
@@ -36,6 +40,7 @@ class SentMemesTableViewController: UITableViewController {
     
     @IBAction func editTable(sender: UIBarButtonItem) {
         tableView.setEditing(!tableView.editing, animated: true)
+        // Toggle the Done and Edit buttons based on editing state
         if tableView.editing {
             editButton.title = "Done"
         } else {

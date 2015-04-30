@@ -84,6 +84,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
     // MARK: - Meme Actions
     
     @IBAction func actionForMeme(sender: UIBarButtonItem) {
+        // When user taps the Action button (for sharing, saving, etc)
         let memeImage = generateMemeImage()
         let controller = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil)
         self.presentViewController(controller, animated: true, completion: nil)
@@ -157,11 +158,17 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
     // MARK: - Text Field
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        // Remove the default text when editing begins
         switch textField.text {
         case defaultTextForTopTextField, defaultTextForBottomTextField:
             textField.text = ""
         default: break
         }
+        
+        // Set which field is being edited. We want to track if bottom text field
+        // is being edited so that when the keyboard slides up, the whole view
+        // can also be moved (so that the text being editied doesn't get hidden
+        // by the keyboard)
         switch textField.tag {
         case 1:
             editingTopTextFieldBegan = true
