@@ -16,8 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-//        let image = UIImage()
-//        let meme = Meme(topText: "xxx", bottomText: "yyy", originalImage: UIImage(), memeImage: UIImage())
         self.memes.append(Meme(topText: "aaa", bottomText: "www", originalImage: UIImage(), memeImage: UIImage()))
         self.memes.append(Meme(topText: "bbb", bottomText: "xxx", originalImage: UIImage(), memeImage: UIImage()))
         self.memes.append(Meme(topText: "ccc", bottomText: "yyy", originalImage: UIImage(), memeImage: UIImage()))

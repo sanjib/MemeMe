@@ -88,7 +88,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WER-B9-RHZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2218.5" y="1182"/>
+            <point key="canvasLocation" x="2218.5" y="1160"/>
         </scene>
         <!--Meme Detail View Controller-->
         <scene sceneID="lP4-5p-nB3">
@@ -110,7 +110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M7Q-re-tFr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3210" y="1182"/>
+            <point key="canvasLocation" x="3210" y="1160"/>
         </scene>
         <!--Meme Editor View Controller-->
         <scene sceneID="ubU-YA-5hb">
@@ -142,31 +142,80 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="SE3-0j-VdG"/>
                                 </items>
                             </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aGs-Qi-yGr">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NDt-eL-Wmo">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F1a-hl-zMa">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zbx-co-foI" firstAttribute="leading" secondItem="st8-q8-pkj" secondAttribute="leadingMargin" constant="-16" id="0XF-DC-brq"/>
+                            <constraint firstItem="F1a-hl-zMa" firstAttribute="leading" secondItem="st8-q8-pkj" secondAttribute="leadingMargin" id="2ga-s9-3bp"/>
+                            <constraint firstItem="NDt-eL-Wmo" firstAttribute="leading" secondItem="st8-q8-pkj" secondAttribute="leadingMargin" id="8D0-KN-ypM"/>
+                            <constraint firstItem="NDt-eL-Wmo" firstAttribute="trailing" secondItem="st8-q8-pkj" secondAttribute="trailingMargin" id="8UN-r4-VlW"/>
+                            <constraint firstItem="aGs-Qi-yGr" firstAttribute="leading" secondItem="st8-q8-pkj" secondAttribute="leadingMargin" constant="-16" id="BD2-Id-yAA"/>
+                            <constraint firstItem="F1a-hl-zMa" firstAttribute="trailing" secondItem="st8-q8-pkj" secondAttribute="trailingMargin" id="S1v-1j-D9v"/>
                             <constraint firstItem="xa2-SN-dg8" firstAttribute="top" secondItem="zbx-co-foI" secondAttribute="bottom" id="dcp-zj-VwO"/>
+                            <constraint firstItem="aGs-Qi-yGr" firstAttribute="top" secondItem="U65-aW-vHV" secondAttribute="bottom" id="eRR-HS-ISq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aGs-Qi-yGr" secondAttribute="trailing" constant="-16" id="g2M-Lb-dkG"/>
+                            <constraint firstItem="zbx-co-foI" firstAttribute="top" secondItem="aGs-Qi-yGr" secondAttribute="bottom" id="gfc-sT-lF6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zbx-co-foI" secondAttribute="trailing" constant="-16" id="te0-Xp-lW1"/>
+                            <constraint firstItem="NDt-eL-Wmo" firstAttribute="top" secondItem="U65-aW-vHV" secondAttribute="bottom" constant="40" id="tgB-EW-btP"/>
+                            <constraint firstItem="zbx-co-foI" firstAttribute="top" secondItem="F1a-hl-zMa" secondAttribute="bottom" constant="40" id="uWl-IQ-Qef"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="zbx-co-foI"/>
+                                <exclude reference="aGs-Qi-yGr"/>
+                                <exclude reference="NDt-eL-Wmo"/>
+                                <exclude reference="F1a-hl-zMa"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="dcp-zj-VwO"/>
+                                <exclude reference="BD2-Id-yAA"/>
+                                <exclude reference="eRR-HS-ISq"/>
+                                <exclude reference="g2M-Lb-dkG"/>
+                                <exclude reference="8D0-KN-ypM"/>
+                                <exclude reference="8UN-r4-VlW"/>
+                                <exclude reference="tgB-EW-btP"/>
+                                <exclude reference="2ga-s9-3bp"/>
+                                <exclude reference="S1v-1j-D9v"/>
                                 <exclude reference="0XF-DC-brq"/>
+                                <exclude reference="gfc-sT-lF6"/>
                                 <exclude reference="te0-Xp-lW1"/>
+                                <exclude reference="uWl-IQ-Qef"/>
+                                <exclude reference="dcp-zj-VwO"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="zbx-co-foI"/>
+                                <include reference="aGs-Qi-yGr"/>
+                                <include reference="NDt-eL-Wmo"/>
+                                <include reference="F1a-hl-zMa"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="dcp-zj-VwO"/>
+                                <include reference="BD2-Id-yAA"/>
+                                <include reference="eRR-HS-ISq"/>
+                                <include reference="g2M-Lb-dkG"/>
+                                <include reference="8D0-KN-ypM"/>
+                                <include reference="8UN-r4-VlW"/>
+                                <include reference="tgB-EW-btP"/>
+                                <include reference="2ga-s9-3bp"/>
+                                <include reference="S1v-1j-D9v"/>
                                 <include reference="0XF-DC-brq"/>
+                                <include reference="gfc-sT-lF6"/>
                                 <include reference="te0-Xp-lW1"/>
+                                <include reference="uWl-IQ-Qef"/>
+                                <include reference="dcp-zj-VwO"/>
                             </mask>
                         </variation>
                     </view>
@@ -178,10 +227,18 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="actionButton" destination="d4K-ST-SbR" id="0ac-G7-Hup"/>
+                        <outlet property="bottomTextField" destination="F1a-hl-zMa" id="Dau-KM-nig"/>
+                        <outlet property="cameraButton" destination="93j-QH-vlu" id="x7R-BP-jL1"/>
+                        <outlet property="imagePickerToolbar" destination="zbx-co-foI" id="9VP-xi-BIm"/>
+                        <outlet property="memeImageView" destination="aGs-Qi-yGr" id="JdD-cA-M1J"/>
+                        <outlet property="topTextField" destination="NDt-eL-Wmo" id="8B1-hO-EGb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y6J-t9-bdU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3960" y="412"/>
+            <point key="canvasLocation" x="4707" y="412"/>
         </scene>
         <!--Table-->
         <scene sceneID="mCx-tB-8HE">
@@ -219,7 +276,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="935-cH-41r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="511.5" y="796"/>
+            <point key="canvasLocation" x="511.5" y="772"/>
         </scene>
         <!--Grid-->
         <scene sceneID="Tn7-h4-dKh">
@@ -238,7 +295,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2n2-cc-ilo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1387.5" y="1182"/>
+            <point key="canvasLocation" x="1387.5" y="1160"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4Fg-WQ-QH0">
@@ -256,11 +313,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JOX-rr-Nxf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3210" y="412"/>
+            <point key="canvasLocation" x="3984" y="412"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="zyk-3K-KSi"/>
+        <segue reference="Bkn-Jf-YFl"/>
         <segue reference="Yzg-dX-pk8"/>
     </inferredMetricsTieBreakers>
 </document>
