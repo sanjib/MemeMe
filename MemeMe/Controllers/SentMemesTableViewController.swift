@@ -10,9 +10,9 @@ import UIKit
 
 class SentMemesTableViewController: UITableViewController {
 
-    var memes: [Meme]!
-    var meme: Meme!
-    var memeEditorShown = false
+    private let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+    private var meme: Meme!
+    private var memeEditorShown = false
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,48 +26,45 @@ class SentMemesTableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        memes = (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+        
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.reloadData()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if memes.count == 0 && memeEditorShown == false {
+        if (appDelegate.memes.count == 0) && (memeEditorShown == false) {
             performSegueWithIdentifier("MemeEditorSegueFromMemeScenesTable", sender: self)
             memeEditorShown = true
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+        
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return memes.count
+        return appDelegate.memes.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MemeTableCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("MemeTableCell", forIndexPath: indexPath) as! SentMemesTableViewCell
 
-        let meme = memes[indexPath.row]
-        cell.textLabel?.text = meme.topText
+        let meme = appDelegate.memes[indexPath.row]
+        cell.topTextLabel.text = meme.topText
+        cell.bottomTextLabel.text = meme.bottomText
+        
+        cell.memeImageView.contentMode = UIViewContentMode.ScaleAspectFill
+        cell.memeImageView.clipsToBounds = true
+        cell.memeImageView.image = meme.memeImage
 
         return cell
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        meme = memes[indexPath.row]
+        meme = appDelegate.memes[indexPath.row]
         performSegueWithIdentifier("MemeDetailSegueFromSentMemesTable", sender: self)
     }
     
