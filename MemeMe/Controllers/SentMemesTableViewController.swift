@@ -21,6 +21,8 @@ class SentMemesTableViewController: UITableViewController {
         self.tableView.reloadData()
         if (appDelegate.memes.count == 0) {
             editButton.enabled = false
+        } else {
+            editButton.enabled = true
         }
     }
     

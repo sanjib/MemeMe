@@ -21,7 +21,7 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     
     // Layout properties
     let minimumSpacingBetweenCells = 5
-    let cellsPerRow = 3
+    let cellsPerRowInPortraitMode = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +77,8 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
         editButton.title = "Edit"
         if (appDelegate.memes.count == 0) {
             editButton.enabled = false
+        } else {
+            editButton.enabled = true
         }
         toolbarItemDelete.enabled = toolbarItemDeleteState()
         inEditingMode = false
@@ -119,8 +121,16 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
         // To determine width of a cell we divide frame width by cells per row
         // Then compensate it by subtracting minimum spacing between cells
         // The last cell doesn't need compensation for spacing
-        let width = Float(self.view.frame.width / CGFloat(cellsPerRow)) -
-            Float(minimumSpacingBetweenCells - (minimumSpacingBetweenCells / cellsPerRow))
+        let deviceOrientation = UIDevice.currentDevice().orientation
+        var widthForCollection: CGFloat!
+        if (deviceOrientation == UIDeviceOrientation.Portrait) || (deviceOrientation == UIDeviceOrientation.PortraitUpsideDown) {
+            widthForCollection = self.view.frame.width
+        } else {
+            widthForCollection = self.view.frame.height
+        }
+        
+        let width = Float(widthForCollection / CGFloat(cellsPerRowInPortraitMode)) -
+            Float(minimumSpacingBetweenCells - (minimumSpacingBetweenCells / cellsPerRowInPortraitMode))
         let height = width
         return CGSize(width: CGFloat(width), height: CGFloat(height))
     }

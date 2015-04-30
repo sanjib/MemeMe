@@ -15,52 +15,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var memes = [Meme]()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-//        memes.append(Meme(
-//            topText: "Legend of the Scarlet Blades",
-//            bottomText: "Writer : Saverio Tenuta. Art : Saverio Tenuta",
-//            originalImage: UIImage(named: "LegendScarletBlades")!,
-//            memeImage: UIImage(named: "LegendScarletBlades")!))
-//        memes.append(Meme(
-//            topText: "The Swords of Glass",
-//            bottomText: "Writer : Sylviane Corgiat. Art : Laura Zuccheri",
-//            originalImage: UIImage(named: "TheSwordsOfGlass")!,
-//            memeImage: UIImage(named: "TheSwordsOfGlass")!))
-//        memes.append(Meme(
-//            topText: "The Incal",
-//            bottomText: "Writer : Alexandro Jodorowsky. Art : Jean Giraud, Zoran Janjetov, Moebius. Cover artist : Jos, Jean Giraud. Colorist : Val",
-//            originalImage: UIImage(named: "TheIncal")!,
-//            memeImage: UIImage(named: "TheIncal")!))
-//        memes.append(Meme(
-//            topText: "The White Lama",
-//            bottomText: "Writer : Alexandro Jodorowsky. Art : Georges Bess",
-//            originalImage: UIImage(named: "TheWhiteLama")!,
-//            memeImage: UIImage(named: "TheWhiteLama")!))
-//        memes.append(Meme(
-//            topText: "Angel Claws",
-//            bottomText: "Art : Moebius. Writer : Alexandro Jodorowsky",
-//            originalImage: UIImage(named: "Angelclaws")!,
-//            memeImage: UIImage(named: "Angelclaws")!))
-//        memes.append(Meme(
-//            topText: "Muse",
-//            bottomText: "Art : Terry Dodson. Writer : Denis-Pierre Filippi",
-//            originalImage: UIImage(named: "Muse")!,
-//            memeImage: UIImage(named: "Muse")!))
-//        memes.append(Meme(
-//            topText: "The Eyes of the Cat",
-//            bottomText: "Writer : Alexandro Jodorowsky. Art : Moebius",
-//            originalImage: UIImage(named: "TheEyesOfTheCat")!,
-//            memeImage: UIImage(named: "TheEyesOfTheCat")!))
-//        memes.append(Meme(
-//            topText: "Cape Horn",
-//            bottomText: "Writer : Christian Perrissin. Art : Enea Riboldi",
-//            originalImage: UIImage(named: "CapeHorn")!,
-//            memeImage: UIImage(named: "CapeHorn")!))
-//        memes.append(Meme(
-//            topText: "The Metabarons",
-//            bottomText: "Writer : Alexandro Jodorowsky. Art : Juan Gimenez",
-//            originalImage: UIImage(named: "TheMetabarons")!,
-//            memeImage: UIImage(named: "TheMetabarons")!))
+        
+        // Meme test data - uncomment for testing
+        memes.append(Meme(
+            topText: "Legend of the Scarlet Blades",
+            bottomText: "Writer : Saverio Tenuta. Art : Saverio Tenuta",
+            originalImage: UIImage(named: "LegendScarletBlades")!,
+            memeImage: UIImage(named: "LegendScarletBlades")!))
+        memes.append(Meme(
+            topText: "The Swords of Glass",
+            bottomText: "Writer : Sylviane Corgiat. Art : Laura Zuccheri",
+            originalImage: UIImage(named: "TheSwordsOfGlass")!,
+            memeImage: UIImage(named: "TheSwordsOfGlass")!))
+        memes.append(Meme(
+            topText: "The Incal",
+            bottomText: "Writer : Alexandro Jodorowsky. Art : Jean Giraud, Zoran Janjetov, Moebius. Cover artist : Jos, Jean Giraud. Colorist : Val",
+            originalImage: UIImage(named: "TheIncal")!,
+            memeImage: UIImage(named: "TheIncal")!))
+        memes.append(Meme(
+            topText: "The White Lama",
+            bottomText: "Writer : Alexandro Jodorowsky. Art : Georges Bess",
+            originalImage: UIImage(named: "TheWhiteLama")!,
+            memeImage: UIImage(named: "TheWhiteLama")!))
+        memes.append(Meme(
+            topText: "Angel Claws",
+            bottomText: "Art : Moebius. Writer : Alexandro Jodorowsky",
+            originalImage: UIImage(named: "Angelclaws")!,
+            memeImage: UIImage(named: "Angelclaws")!))
+        memes.append(Meme(
+            topText: "Muse",
+            bottomText: "Art : Terry Dodson. Writer : Denis-Pierre Filippi",
+            originalImage: UIImage(named: "Muse")!,
+            memeImage: UIImage(named: "Muse")!))
+        memes.append(Meme(
+            topText: "The Eyes of the Cat",
+            bottomText: "Writer : Alexandro Jodorowsky. Art : Moebius",
+            originalImage: UIImage(named: "TheEyesOfTheCat")!,
+            memeImage: UIImage(named: "TheEyesOfTheCat")!))
+        memes.append(Meme(
+            topText: "Cape Horn",
+            bottomText: "Writer : Christian Perrissin. Art : Enea Riboldi",
+            originalImage: UIImage(named: "CapeHorn")!,
+            memeImage: UIImage(named: "CapeHorn")!))
+        memes.append(Meme(
+            topText: "The Metabarons",
+            bottomText: "Writer : Alexandro Jodorowsky. Art : Juan Gimenez",
+            originalImage: UIImage(named: "TheMetabarons")!,
+            memeImage: UIImage(named: "TheMetabarons")!))
         
         return true
     }
