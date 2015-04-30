@@ -15,9 +15,11 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
     @IBOutlet weak var imagePickerToolbar: UIToolbar!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var actionButton: UIBarButtonItem!
-    
-    let imagePickerController = UIImagePickerController()
+
     var meme: Meme!
+    
+    private let imagePickerController = UIImagePickerController()
+    private let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
 
     // Attributes and custom font for meme text
     private let memeTextAtrributes = [
@@ -76,8 +78,50 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
         unsubscribeToKeyboardNotifications()
     }
     
+
+    
+    // MARK: - Meme Actions
+    
+    @IBAction func actionForMeme(sender: UIBarButtonItem) {
+        let memeImage = generateMemeImage()
+        let controller = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil)
+        self.presentViewController(controller, animated: true, completion: nil)
+        controller.completionWithItemsHandler = {
+            activityType, completed, returnedItems, activityError in
+            self.saveMeme()
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+    
     @IBAction func cancelMemeEdit(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: - Meme Image
+    
+    func saveMeme() {
+        appDelegate.memes.append(Meme(
+            topText: topTextField.text,
+            bottomText: bottomTextField.text,
+            originalImage: memeImageView.image!,
+            memeImage: generateMemeImage()))
+    }
+    
+    func generateMemeImage() -> UIImage {
+        // Hide toolbar and navigation bar to avoid inclusion in saved image
+        self.imagePickerToolbar.hidden = true
+        self.navigationController?.navigationBarHidden = true
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+        let memeImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        // Restore toolbar and navigation bar
+        self.imagePickerToolbar.hidden = false
+        self.navigationController?.navigationBarHidden = false
+        
+        return memeImage
     }
     
     // MARK: - Image Picker

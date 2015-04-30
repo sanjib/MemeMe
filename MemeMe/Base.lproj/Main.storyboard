@@ -167,10 +167,10 @@
                             <constraint firstItem="xa2-SN-dg8" firstAttribute="top" secondItem="aGs-Qi-yGr" secondAttribute="bottom" id="JdL-xg-uKZ"/>
                             <constraint firstItem="aGs-Qi-yGr" firstAttribute="top" secondItem="st8-q8-pkj" secondAttribute="topMargin" id="KM5-ac-0pN"/>
                             <constraint firstItem="F1a-hl-zMa" firstAttribute="trailing" secondItem="st8-q8-pkj" secondAttribute="trailingMargin" id="S1v-1j-D9v"/>
+                            <constraint firstItem="NDt-eL-Wmo" firstAttribute="top" secondItem="aGs-Qi-yGr" secondAttribute="top" constant="120" id="WDX-IF-X13"/>
                             <constraint firstItem="xa2-SN-dg8" firstAttribute="top" secondItem="zbx-co-foI" secondAttribute="bottom" id="dcp-zj-VwO"/>
+                            <constraint firstItem="aGs-Qi-yGr" firstAttribute="bottom" secondItem="F1a-hl-zMa" secondAttribute="bottom" constant="120" id="lWV-SU-4RV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zbx-co-foI" secondAttribute="trailing" constant="-16" id="te0-Xp-lW1"/>
-                            <constraint firstItem="NDt-eL-Wmo" firstAttribute="top" secondItem="U65-aW-vHV" secondAttribute="bottom" constant="40" id="tgB-EW-btP"/>
-                            <constraint firstItem="zbx-co-foI" firstAttribute="top" secondItem="F1a-hl-zMa" secondAttribute="bottom" constant="40" id="uWl-IQ-Qef"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -183,14 +183,14 @@
                                 <exclude reference="2vn-If-FaM"/>
                                 <exclude reference="CG0-5n-vf4"/>
                                 <exclude reference="KM5-ac-0pN"/>
+                                <exclude reference="WDX-IF-X13"/>
                                 <exclude reference="8D0-KN-ypM"/>
                                 <exclude reference="8UN-r4-VlW"/>
-                                <exclude reference="tgB-EW-btP"/>
                                 <exclude reference="2ga-s9-3bp"/>
                                 <exclude reference="S1v-1j-D9v"/>
+                                <exclude reference="lWV-SU-4RV"/>
                                 <exclude reference="0XF-DC-brq"/>
                                 <exclude reference="te0-Xp-lW1"/>
-                                <exclude reference="uWl-IQ-Qef"/>
                                 <exclude reference="JdL-xg-uKZ"/>
                                 <exclude reference="dcp-zj-VwO"/>
                             </mask>
@@ -206,21 +206,25 @@
                                 <include reference="2vn-If-FaM"/>
                                 <include reference="CG0-5n-vf4"/>
                                 <include reference="KM5-ac-0pN"/>
+                                <include reference="WDX-IF-X13"/>
                                 <include reference="8D0-KN-ypM"/>
                                 <include reference="8UN-r4-VlW"/>
-                                <include reference="tgB-EW-btP"/>
                                 <include reference="2ga-s9-3bp"/>
                                 <include reference="S1v-1j-D9v"/>
+                                <include reference="lWV-SU-4RV"/>
                                 <include reference="0XF-DC-brq"/>
                                 <include reference="te0-Xp-lW1"/>
-                                <include reference="uWl-IQ-Qef"/>
                                 <include reference="JdL-xg-uKZ"/>
                                 <include reference="dcp-zj-VwO"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="80H-54-SWe">
-                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="d4K-ST-SbR"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="d4K-ST-SbR">
+                            <connections>
+                                <action selector="actionForMeme:" destination="cQt-Tg-hT7" id="OKB-Uh-QQn"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="MfM-p8-6jy">
                             <connections>
                                 <action selector="cancelMemeEdit:" destination="cQt-Tg-hT7" id="ldS-EC-7Wd"/>
