@@ -14,20 +14,9 @@ class SentMemesTableViewController: UITableViewController {
     private var meme: Meme!
     private let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
     private var memeEditorShown = false
-        
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.reloadData()
     }
@@ -39,6 +28,16 @@ class SentMemesTableViewController: UITableViewController {
             memeEditorShown = true
         }
     }
+    
+    @IBAction func editTable(sender: UIBarButtonItem) {
+        tableView.setEditing(!tableView.editing, animated: true)
+        if tableView.editing {
+            editButton.title = "Done"
+        } else {
+            editButton.title = "Edit"
+        }
+    }
+
         
     // MARK: - Table view data source
 
@@ -52,15 +51,10 @@ class SentMemesTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MemeTableCell", forIndexPath: indexPath) as! SentMemesTableViewCell
-
         let meme = appDelegate.memes[indexPath.row]
+        cell.memeImageView.image = meme.memeImage
         cell.topTextLabel.text = meme.topText
         cell.bottomTextLabel.text = meme.bottomText
-        
-        cell.memeImageView.contentMode = UIViewContentMode.ScaleAspectFill
-        cell.memeImageView.clipsToBounds = true
-        cell.memeImageView.image = meme.memeImage
-
         return cell
     }
 
@@ -68,41 +62,14 @@ class SentMemesTableViewController: UITableViewController {
         meme = appDelegate.memes[indexPath.row]
         performSegueWithIdentifier("MemeDetailSegueFromSentMemesTable", sender: self)
     }
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
 
-    /*
-    // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
+            meme = nil
+            appDelegate.memes.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     // MARK: - Navigation
 

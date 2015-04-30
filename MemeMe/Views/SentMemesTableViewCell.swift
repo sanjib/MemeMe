@@ -9,25 +9,25 @@
 import UIKit
 
 class SentMemesTableViewCell: UITableViewCell {
-//    var topTextLabel: UILabel!
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var topTextLabel: UILabel!
     @IBOutlet weak var bottomTextLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        memeImageView.contentMode = UIViewContentMode.ScaleAspectFill
+        memeImageView.clipsToBounds = true
         
-//        topTextLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
-//        topTextLabel.textColor = UIColor.redColor()
-//        contentView.addSubview(topTextLabel)
-    }
+        accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
-
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if self.editing {
+            // Move the contentView frame origin while editing slightly to the right
+            // to avoid the red delete button from overlapping the memeImageView
+            self.contentView.frame.origin.x += 16.0
+        }
+    }
 }

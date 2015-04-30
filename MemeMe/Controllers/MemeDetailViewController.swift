@@ -20,7 +20,6 @@ class MemeDetailViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.hidden = true
         let editButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: "editMeme")
         let deleteButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: "deleteMeme")
         self.navigationItem.rightBarButtonItems = [deleteButton, editButton]
@@ -29,7 +28,6 @@ class MemeDetailViewController: UIViewController {
     }
     
     func editMeme() {
-        println("edit meme")
         performSegueWithIdentifier("MemeEditorSegueFromMemeDetail", sender: self)
     }
     

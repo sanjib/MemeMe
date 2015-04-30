@@ -11,8 +11,8 @@ import UIKit
 let reuseIdentifier = "MemeItemCell"
 
 class SentMemesCollectionViewController: UICollectionViewController {
-    var memes: [Meme]!
-    var meme: Meme!
+    private var meme: Meme!
+    private let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,6 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        memes = (UIApplication.sharedApplication().delegate as! AppDelegate).memes
         self.collectionView?.reloadData()
     }
 
@@ -57,13 +56,13 @@ class SentMemesCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
-        return memes.count
+        return appDelegate.memes.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! SentMemesCollectionViewCell
     
-        let meme = memes[indexPath.row]
+        let meme = appDelegate.memes[indexPath.row]
         let imageView = UIImageView()
         imageView.image = meme.memeImage
         cell.backgroundView = imageView
@@ -75,7 +74,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        meme = memes[indexPath.row]
+        meme = appDelegate.memes[indexPath.row]
         performSegueWithIdentifier("MemeDetailSegueFromSentMemesCollection", sender: self)
     }
     
