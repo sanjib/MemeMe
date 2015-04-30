@@ -14,9 +14,9 @@ class SentMemesCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        topTextLabel = UILabel(frame: CGRect(x: 0, y: frame.height, width: frame.width, height: frame.height))
-        topTextLabel.textColor = UIColor.redColor()
-        contentView.addSubview(topTextLabel)
+//        topTextLabel = UILabel(frame: CGRect(x: 0, y: frame.height, width: frame.width, height: frame.height))
+//        topTextLabel.textColor = UIColor.redColor()
+//        contentView.addSubview(topTextLabel)
     }
 
     required init(coder aDecoder: NSCoder) {

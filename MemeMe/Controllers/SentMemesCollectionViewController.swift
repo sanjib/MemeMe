@@ -10,20 +10,17 @@ import UIKit
 
 let reuseIdentifier = "MemeItemCell"
 
-class SentMemesCollectionViewController: UICollectionViewController {
+class SentMemesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     private var meme: Meme!
     private let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
     
+    // Layout properties
+    let minimumSpacingBetweenCells = 5
+    let cellsPerRow = 3
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
         self.collectionView!.registerClass(SentMemesCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -31,31 +28,33 @@ class SentMemesCollectionViewController: UICollectionViewController {
         self.collectionView?.reloadData()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: - UICollectionViewDelegateFlowLayout
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        // To determine width of a cell we divide frame width by cells per row
+        // Then compensate it by subtracting minimum spacing between cells
+        // The last cell doesn't need compensation for spacing
+        let width = Float(self.view.frame.width / CGFloat(cellsPerRow)) -
+            Float(minimumSpacingBetweenCells - (minimumSpacingBetweenCells / cellsPerRow))
+        let height = width
+        return CGSize(width: CGFloat(width), height: CGFloat(height))
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return CGFloat(minimumSpacingBetweenCells)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return CGFloat(minimumSpacingBetweenCells)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        //#warning Incomplete method implementation -- Return the number of sections
         return 1
     }
 
-
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //#warning Incomplete method implementation -- Return the number of items in the section
         return appDelegate.memes.count
     }
 
@@ -64,14 +63,15 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
         let meme = appDelegate.memes[indexPath.row]
         let imageView = UIImageView()
+        imageView.contentMode = UIViewContentMode.ScaleAspectFill
+        imageView.clipsToBounds = true
         imageView.image = meme.memeImage
         cell.backgroundView = imageView
-        cell.topTextLabel.text = meme.topText
     
         return cell
     }
 
-    // MARK: UICollectionViewDelegate
+    // MARK: - UICollectionViewDelegate
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         meme = appDelegate.memes[indexPath.row]
@@ -109,10 +109,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
         if segue.identifier == "MemeDetailSegueFromSentMemesCollection" {
             let controller = segue.destinationViewController as! MemeDetailViewController
             controller.meme = meme

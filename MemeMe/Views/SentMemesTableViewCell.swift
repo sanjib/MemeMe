@@ -18,8 +18,8 @@ class SentMemesTableViewCell: UITableViewCell {
         memeImageView.contentMode = UIViewContentMode.ScaleAspectFill
         memeImageView.clipsToBounds = true
         
+        // Show the right chevron button
         accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-
     }
     
     override func layoutSubviews() {
