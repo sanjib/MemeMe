@@ -19,6 +19,9 @@ class SentMemesTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.reloadData()
+        if (appDelegate.memes.count == 0) {
+            editButton.enabled = false
+        }
     }
     
     override func viewDidAppear(animated: Bool) {

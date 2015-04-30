@@ -372,11 +372,11 @@
             </objects>
             <point key="canvasLocation" x="4707" y="412"/>
         </scene>
-        <!--Table-->
+        <!--Navigation Controller-->
         <scene sceneID="mCx-tB-8HE">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8gQ-O2-erh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Table" id="Plu-Op-xCp"/>
+                    <tabBarItem key="tabBarItem" title="" image="table" id="Plu-Op-xCp"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GfW-Xi-hr5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -410,11 +410,11 @@
             </objects>
             <point key="canvasLocation" x="511.5" y="772"/>
         </scene>
-        <!--Grid-->
+        <!--Navigation Controller-->
         <scene sceneID="Tn7-h4-dKh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ue3-4B-Q9H" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Grid" id="m6Y-Tf-fed"/>
+                    <tabBarItem key="tabBarItem" title="" image="collection" id="m6Y-Tf-fed"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7W8-aT-KwN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -448,6 +448,10 @@
             <point key="canvasLocation" x="3984" y="412"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="collection" width="30" height="30"/>
+        <image name="table" width="30" height="30"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="E6L-vX-2qn"/>
         <segue reference="Bkn-Jf-YFl"/>
