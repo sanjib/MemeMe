@@ -109,8 +109,8 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
             meme.memeImage = generateMemeImage()
         } else {
             meme = Meme(
-                topText: topTextField.text,
-                bottomText: bottomTextField.text,
+                topText: topTextField.text!,
+                bottomText: bottomTextField.text!,
                 originalImage: memeImageView.image!,
                 memeImage: generateMemeImage())
             appDelegate.memes.append(meme)
@@ -148,7 +148,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
         self.presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             memeImageView.image = image
         }
@@ -159,7 +159,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         // Remove the default text when editing begins
-        switch textField.text {
+        switch textField.text! {
         case defaultTextForTopTextField, defaultTextForBottomTextField:
             textField.text = ""
         default: break

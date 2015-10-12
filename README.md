@@ -1,10 +1,10 @@
 # MemeMe
-Udacity Project # 2
-
-Platform: iOS 8.x
-Xcode: 6.x
 
 The app allows users to add memes to pictures. Pictures can be taken through device camera or selected from album. Created memes can be shared, sent via message, saved to photo album. Sent memes can be viewed in a table or grid view. Created memes can be edited or deleted.
+
+**Video demo**
+
+https://www.youtube.com/watch?v=0W-8ZXoRkxE
 
 ![Splash screen](https://raw.githubusercontent.com/sanjibahmad/MemeMe/master/app-screenshots/01.splash-screen.png)
 ![Photo edit screen - blank](https://raw.githubusercontent.com/sanjibahmad/MemeMe/master/app-screenshots/02.meme-editor-blank.png)

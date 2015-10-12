@@ -33,7 +33,7 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
             y: (self.view.bounds.size.height - 44),
             width: self.view.bounds.size.width,
             height: 44))
-        toolbar.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin
+        toolbar.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleTopMargin]
         self.view.addSubview(toolbar)
         
         // Create the trash icon (UIBarButtonItem)
@@ -66,7 +66,7 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     
     private func turnEditModeOff() {
         // Deselect all items when edit mode is turned off
-        if let itemPaths = self.collectionView?.indexPathsForSelectedItems() as? [NSIndexPath] {
+        if let itemPaths = self.collectionView?.indexPathsForSelectedItems() {
             for indexPath in itemPaths {
                 self.collectionView?.deselectItemAtIndexPath(indexPath, animated: false)
             }
@@ -111,7 +111,7 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
                 }
                 // Sorted indices by descending order because everytime an element E is removed,
                 // the indices of the elements beyond E is reduced by one
-                indicesToDelete.sort(>)
+                indicesToDelete.sortInPlace(>)
                 for index in indicesToDelete {
                     self.appDelegate.memes.removeAtIndex(index)
                 }
@@ -162,7 +162,7 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) 
     
         let meme = appDelegate.memes[indexPath.row]
         let imageView = UIImageView()
